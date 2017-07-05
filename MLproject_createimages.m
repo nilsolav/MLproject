@@ -23,7 +23,7 @@ td = double(median(raw_data.pings(ch).transducerdepth));
 
 % Plot the interpretation mask
 hold on
-LSSSreader_plotsnapfiles(layer,school,erased,exclude,f,td)
+LSSSreader_plotsnapfiles(layer,school,erased,exclude,f,ch,td,Sv.pings(ch).time)
 title([f,'kHz']) 
 
 print(png,'-dpng')

@@ -5,7 +5,7 @@
 %% Init
 
 if isunix
-    %cd /nethome/nilsolav/repos/nilsolav/MODELS/MLprosjekt/
+    cd /nethome/nilsolav/repos/github/MLproject/
     addpath('/nethome/nilsolav/repos/github/LSSSreader/src/')
     addpath('/nethome/nilsolav/repos/github/NMDAPIreader/')
     addpath('/nethome/nilsolav/repos/nilsolav/MODELS/matlabtools/Enhanced_rdir')
@@ -25,7 +25,7 @@ DataOverview = dir(fullfile(dd_out,'dataoverviews','DataOverview*.mat'));
 
 %% Start loop over cruise series
 f='200';
-warning off
+
 for k=11%1:length(DataOverview)
     dd_data = fullfile(dd_out,'data',DataOverview(k).name(1:end-4));
     if ~exist(dd_data)
@@ -36,7 +36,7 @@ for k=11%1:length(DataOverview)
     dat = load(fullfile(dd_out,'dataoverviews',['DataPairedFiles',DataOverview(k).name(13:end)]));
     
    %
-    for i=1:length(dat.pairedfiles)
+    for i=7%1:length(dat.pairedfiles)
         % I need column one and three (snap and raw)
         disp(i)
         if size(dat.pairedfiles{i}.F,2)==3
@@ -48,9 +48,9 @@ for k=11%1:length(DataOverview)
                     png = fullfile(dd_data,[fn,'.png']);
                    try
                         MLproject_createimages(snap,raw,png,f);
-                        disp([datestr(now),'; success ; ',fn])
-                   catch
-                        disp([datestr(now),'; failed  ;',fn])
+                        disp([datestr(now),'; success ; ',fn,' ; ; ;'])
+                   catch ME
+                        disp([datestr(now),'; failed  ; ',fn,' ; ',ME.message,' ; file:',ME.stack(end).file,' ; line:',num2str(ME.stack(end).line)])
                    end
                 end
             end
