@@ -38,7 +38,7 @@ for k=11%1:length(DataOverview)
     dat = load(fullfile(dd_out,'dataoverviews',['DataPairedFiles',DataOverview(k).name(13:end)]));
     
    %
-    for i=1%:length(dat.pairedfiles)  % this loops over years
+    for i=1:length(dat.pairedfiles)  % this loops over years
         
         % I need column one and three (snap and raw)
         disp(i)
